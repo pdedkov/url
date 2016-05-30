@@ -1,6 +1,6 @@
 {
-    "name": "pdedkov/uri",
-    "description": "simple uri process library",
+    "name": "pdedkov/url",
+    "description": "simple url process library",
     "type": "library",
     "license": "MIT",
     "version": "1.0",
