@@ -1,0 +1,23 @@
+{
+    "name": "pdedkov/uri",
+    "description": "simple uri process library",
+    "type": "library",
+    "license": "MIT",
+    "version": "1.0",
+    "authors": [
+        {
+            "name": "Pavel E. Dedkov",
+            "email": "pavel.dedkov@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">= 5.4.0",
+        "pdedkov/config": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Uri\\":""
+        }
+    }
+}
