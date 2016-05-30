@@ -13,7 +13,8 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">= 5.4.0",
-        "pdedkov/config": "dev-master"
+        "pdedkov/config": "dev-master",
+	"pdedkov/browser": "dev-master"
     },
     "autoload": {
         "psr-4": {
