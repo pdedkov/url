@@ -1,5 +1,5 @@
 <?php
-namespace Uri;
+namespace Url;
 
 use Etechnika\IdnaConvert\IdnaConvert;
 
