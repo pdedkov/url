@@ -14,14 +14,17 @@ class Checker extends Base {
 	protected $_Cache = null;
 
 	protected static $_defaults = [
-		'agent'	=> 'Browser\Checker'
+		'agent'	=> 'Browser\Checker',
+		'cache' => false
 	];
 
 	protected function __construct($config = array()) {
 		parent::__construct(__NAMESPACE__, $config);
 
 		try {
-			$this->_Cache = new Cache\Db();
+			if ($this->_config['cache'] && class_exists('Cache\Db')) {
+				$this->_Cache = new Cache\Db();
+			}
 		} catch (\Exception $e) {}
 	}
 
