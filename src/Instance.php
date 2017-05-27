@@ -20,6 +20,10 @@ class Instance {
 		'fragment' => ['before' => '#'],
 	];
 
+	protected function __construct() {
+
+	}
+
 	public static function getInstance() {
 		if (is_null(self::$_instance)) {
 			self::$_instance = new self();
@@ -51,12 +55,26 @@ class Instance {
 	 * @return string
 	 */
 	public static function httpLess($url) {
-		if (strpos($url, 'http://') === 0) {
+		if (stripos($url, 'http://') === 0) {
 			$url = substr($url, 7);
-		} elseif (strpos($url, 'https://') === 0) {
+		} elseif (stripos($url, 'https://') === 0) {
 			$url = substr($url, 8);
 		}
 		return $url;
+	}
+
+	/**
+	 * Выгребаем протокол
+	 * @param $url
+	 * @return string
+	 */
+	public static function getProto($url) {
+		if (stripos($url, 'http://') === 0) {
+			return 'http://';
+		} elseif (stripos($url, 'https://') === 0) {
+			return 'https://';
+		}
+		return '';
 	}
 
 	/**
@@ -327,6 +345,10 @@ class Instance {
 		// символ 00 мешает DOM-парсеру
 		$page = preg_replace('/\x00/', ' ', $page);
 
+		// лишние углы
+		$page = preg_replace('/<{2,}/', '<', $page);
+		$page = str_replace(["&nbsp;", "\xc2\xa0"], ' ', $page);
+
 		// приходит уже перекодированный в ютф8 текс, нужно заменить объявляения кодировки в тексте
 		$page = preg_replace(['/windows-1251/i', '/cp1251/i'], 'utf-8', $page);
 		// некоторые символы в ссылках кодируются, исправим это
@@ -511,10 +533,10 @@ class Instance {
    */
 	public static function encode($url) {
 		$decoded = self::decode($url);
-
 		if (strcasecmp($decoded, $url) == 0) {
 			// строка изначально не кодированная так что кодируем её
 			$parsed = self::parseUrl($url);
+
 
 			foreach (['path', 'query', 'fragment'] as $part) {
 				if (empty($parsed[$part])) {
