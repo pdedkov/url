@@ -10,7 +10,7 @@
         bootstrap="vendor/autoload.php"
 >
     <testsuites>
-        <testsuite name="IcerDl Test Suite">
+        <testsuite name="Url Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
