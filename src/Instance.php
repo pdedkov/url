@@ -3,12 +3,10 @@ namespace Url;
 
 use Etechnika\IdnaConvert\IdnaConvert;
 
-use Config\Singleton as Base;
-
 /**
  * Сборник функций для обработки урлов
  */
-class Instance extends Base {
+class Instance {
 	protected static $_instance = null;
 
 	protected static $_urlNotations = [
